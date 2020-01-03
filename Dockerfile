@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc:latest
 
-LABEL maintainer="Jeffery Bagirimvano"
+LABEL maintainer="Nick Salonen <whatdoyouwant@gmail.com>"
 
 ENV OC_VERSION=v3.11.0 \
     OC_TAG_SHA=0cbc58b \
@@ -8,7 +8,7 @@ ENV OC_VERSION=v3.11.0 \
     RUN_DEPS='curl ca-certificates gettext ansible git bash py-dnspython'
 
 RUN apk --no-cache add $BUILD_DEPS $RUN_DEPS && \
-    apk --no-cache add py-jmespath --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ && \
+    apk --no-cache add py3-jmespath --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
     curl -sLo /tmp/oc.tar.gz https://github.com/openshift/origin/releases/download/${OC_VERSION}/openshift-origin-client-tools-${OC_VERSION}-${OC_TAG_SHA}-linux-64bit.tar.gz && \
     tar xzvf /tmp/oc.tar.gz -C /tmp/ && \
     mv /tmp/openshift-origin-client-tools-${OC_VERSION}-${OC_TAG_SHA}-linux-64bit/oc /usr/local/bin/ && \
